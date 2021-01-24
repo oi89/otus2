@@ -12,8 +12,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
 public class WindowSizeAndTimeoutTests {
     Logger logger = LogManager.getLogger(WindowSizeAndTimeoutTests.class);
     protected static WebDriver driver;
@@ -22,7 +20,6 @@ public class WindowSizeAndTimeoutTests {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         logger.info("Драйвер успешно запущен");
     }
 
