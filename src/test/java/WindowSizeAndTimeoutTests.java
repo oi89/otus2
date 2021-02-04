@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -53,16 +54,17 @@ public class WindowSizeAndTimeoutTests {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input#searchNumber")));
         WebElement inputEl = driver.findElement(By.cssSelector("input#searchNumber"));
-        inputEl.sendKeys("97");
+        inputEl.sendKeys("97" + Keys.ENTER);
         logger.info("Введен текст '97' в поле для поиска");
 
-        // Ждем исчезновения спиннера загрузки
+        // Ждем появления и исчезновения спиннера загрузки
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.preloader-icon")));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.preloader-icon")));
 
         WebElement firstTelephone = driver.findElement(By.cssSelector("div.product-group div.bundles-column:first-child div.phone-number-block:first-child span.phone-number > span"));
         String actualTelephone = firstTelephone.getText();
-        Assert.assertTrue("Первый телефон содержит цифры 9 и 7",
-                actualTelephone.contains("9") && actualTelephone.contains("7"));
+
+        Assert.assertTrue("Первый телефон содержит цифры 9 и 7", actualTelephone.contains("97"));
         logger.info("Проверен телефон " + actualTelephone + " на наличие цифр 9 и 7");
     }
 }
